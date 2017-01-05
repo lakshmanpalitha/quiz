@@ -36,10 +36,8 @@
 									</select>
 								</div>
                                 <div class="form-group">
-                                    <textarea name="category-details" class="form-control category-details" placeholder="Category Details" rows="3"></textarea>
+                                    <textarea name="category-details" class="form-control category-details editor" placeholder="Category Details" rows="3"></textarea>
                                 </div>
-
-                                <button type="submit" name="add-category-btn" class="btn btn-primary ">Add Category</button>
 							</div>
 						</form>
 					</div>
@@ -48,33 +46,27 @@
 
 		</div><!-- /.row -->
 		
-		<div class="row">
-			<div class="col-lg-12">
-				<div class="panel panel-default">
-					<div class="panel-heading">Question</div>
-					<div class="panel-body">
-						<div class="col-md-8">
-							<form role="form" method="post" action="">
-								<div class="form-group">
-									<label>Question Type</label>
-									<select class="form-control">
-										<option>Option 1</option>
-										<option>Option 2</option>
-										<option>Option 3</option>
-										<option>Option 4</option>
-									</select>
-								</div>
-                                <div class="form-group">
-                                    <textarea name="category-details" class="form-control category-details" placeholder="Category Details" rows="3"></textarea>
-                                </div>
-
-                                <button type="submit" name="add-category-btn" class="btn btn-primary ">Add Category</button>
-							</div>
-						</form>
+	<div class="row">
+		<div class="col-lg-12 answerers-panel">
+			<div class="panel panel-default">
+				<div class="panel-heading">Answerers</div>
+				<div class="panel-body">
+				<div class="col-md-12 answerers">
+					<div class="answerer-1">
+						<div class="form-group col-md-6">
+							<textarea id="answerer-1" name="answerer-1" class="form-control editor" placeholder="Answerers" rows="3"></textarea>
+						</div>
+						<div class="form-group col-md-3">
+							<input id="mark-1" name="mark-1" class="form-control" placeholder="Marks">
+						</div>
+						<div class="form-group col-md-3">
+							
+						</div>
 					</div>
 				</div>
+					<button type="submit" name="add-category-btn" class="btn btn-primary add-answer">Add Answerer</button>
+				</div>
 			</div><!-- /.col-->
-
 		</div><!-- /.row -->
 		
 	</div><!--/.main-->

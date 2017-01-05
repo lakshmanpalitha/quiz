@@ -936,7 +936,17 @@ h1.page-header {
     stroke-width: 4px;
 }
 
+.answerer{clear:both;}
 
+.answerer .action-buttons a{
+display:block;
+width:40px;
+height:40px;
+}
+
+.answerer .action-buttons a:hover{
+color:red;
+}
 
 
 
