@@ -7,7 +7,7 @@
     <ul class="nav menu">
         <li><a href="index.html"><svg class="glyph stroked dashboard-dial"><use xlink:href="#stroked-dashboard-dial"></use></svg> Dashboard</a></li>
         <li class="active"><a href="manage.cat.php"><svg class="glyph stroked clipboard with paper"><use xlink:href="#stroked-clipboard-with-paper"/></svg>Manage Category</a></li>
-		<li class="active"><a href="add_quection.php"><svg class="glyph stroked plus sign"><use xlink:href="#stroked-plus-sign"/></svg>Add Quection</a></li>
+		<li class=""><a href="add_quection.php"><svg class="glyph stroked plus sign"><use xlink:href="#stroked-plus-sign"/></svg>Add Quection</a></li>
 		
 
 
