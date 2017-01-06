@@ -26,15 +26,6 @@
 					<div class="panel-body">
 						<div class="col-md-8">
 							<form role="form" method="post" action="">
-								<div class="form-group">
-									<label>Question Type</label>
-									<select class="form-control">
-										<option>Option 1</option>
-										<option>Option 2</option>
-										<option>Option 3</option>
-										<option>Option 4</option>
-									</select>
-								</div>
                                 <div class="form-group">
                                     <textarea name="category-details" class="form-control category-details editor" placeholder="Category Details" rows="3"></textarea>
                                 </div>
