@@ -4,13 +4,9 @@
 <?php include "includes/site_title.php"; ?>
  <?php include "includes/header_files.php"; ?>
 </head>
-
 <body>
 <?php include "includes/site_header.php"; ?>
-
-<?php include "includes/side_bar.php"; ?>
-
-		
+<?php include "includes/side_bar.php"; ?>		
 	<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
 		
 		<div class="row">
