@@ -41,7 +41,7 @@
 				<div class="col-md-12 answers">
 					<div class="answer-1">
 						<div class="form-group col-md-6">
-							<textarea id="answer-1" name="answer-1" class="form-control editor" placeholder="answers" rows="3"></textarea>
+							<textarea id="answer-1" name="answer-1" class="form-control editor" placeholder="answers" rows="3">lakshman</textarea>
 						</div>
 						<div class="form-group col-md-3">
 							<input id="mark-1" name="mark-1" class="form-control" placeholder="Marks">

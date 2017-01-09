@@ -1,3 +1,38 @@
+<?php
+ob_start();
+session_start();
+require_once 'dbconnect.php';
+
+
+// if session is not set this will redirect to login page
+if( !isset($_SESSION['user']) ) {
+    header("Location: index.php");
+    exit;
+}
+// select loggedin users detail
+$res=mysql_query("SELECT * FROM users WHERE userId=".$_SESSION['user']);
+$userRow=mysql_fetch_array($res);
+
+require 'includes/Db.php';
+require 'includes/db.config.php';
+$db = Db::instance();
+
+if (isset($_POST['add-category-btn'])) {
+    $catName = $_POST['category-name'];
+    $catDetails = $_POST["category-details"];
+
+    if(!empty($catName) && !empty($catName)){
+        $db->create( 'categories', array( 'cat_name' => $catName,  'cat_details' => $catDetails ) );
+    }
+}
+
+if(isset($_GET['edit-cat'])){
+    echo "App = ".$_GET['app'];
+    var_dump($_GET['edit-cat']);
+}
+
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,18 +61,18 @@
 					<div class="panel-heading">Add New Category</div>
 					<div class="panel-body">
 						<div class="col-md-6">
-							<form role="form" method="post" action="manage.cat.php">
-								<div class="form-group">
-									<input name="category-name" class="form-control category-name" placeholder="Category Name">
-								</div>
+                            <form role="form" method="post" action="manage.cat.php">
+                                <div class="form-group">
+                                    <input name="category-name" class="form-control category-name" placeholder="Category Name">
+                                </div>
 
                                 <div class="form-group">
                                     <textarea name="category-details" class="form-control category-details" placeholder="Category Details" rows="3"></textarea>
                                 </div>
 
                                 <button type="submit" name="add-category-btn" class="btn btn-primary ">Add Category</button>
-							</div>
-						</form>
+                        </div>
+                        </form>
 					</div>
 				</div>
 			</div><!-- /.col-->
@@ -49,29 +84,27 @@
                         <table data-toggle="table">
                             <thead>
                             <tr>
-                                <th data-field="id" data-align="right">Cat ID</th>
+                                <th data-field="id" data-align="right">Item ID</th>
                                 <th data-field="name">Name</th>
-                                <th data-field="actions">Actions</th>
+                                <th data-field="price">Actions</th>
                             </tr>
                             </thead>
-                            <tr>
-                                <td>001</td>
-                                <td>HTML</td>
-                                <td>
-                                    <div class="pull-right action-buttons">
-                                        <a href="?edit-cat="><svg class="glyph stroked pencil"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#stroked-pencil"></use></svg></a>
-                                    </div>
-                                </td>
-								<tr>
-                                <td>002</td>
-                                <td>PHP</td>
-                                <td>
-                                    <div class="pull-right action-buttons">
-                                        <a href="?edit-cat="><svg class="glyph stroked pencil"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#stroked-pencil"></use></svg></a>
-                                    </div>
-                                </td>
-                            </tr>
-                            </tr>
+                            <?php
+                            $select = $db->select( 'categories' );
+                            while ( $row = $select->fetch() ) {
+                                ?>
+                                <tr>
+                                    <td><?php echo $row->cat_id; ?></td>
+                                    <td><?php echo $row->cat_name; ?></td>
+                                    <td>
+                                        <div class="pull-right action-buttons">
+                                            <a href="?edit-cat=<?php echo $row->cat_id; ?>"><svg class="glyph stroked pencil"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#stroked-pencil"></use></svg></a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            <?php
+                            }
+                            ?>
                         </table>
                     </div>
                 </div>
