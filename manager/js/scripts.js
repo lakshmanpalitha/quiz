@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    var answerID = 2;
+    var answerID = 1;
 
 
     tinymce.init({
@@ -36,8 +36,8 @@ $(document).ready(function () {
             input.click();
         }
     });
-
-
+/*
+//adding new answer box
     $(".add-answer").click(function () {
         var answerBlock = '<div class="answer answer-' + answerID + '"><div class="form-group col-md-6">' +
             '<textarea id="answer-' + answerID + '" name="answer-' + answerID + '" class="form-control editor" placeholder="answers"></textarea>' +
@@ -53,11 +53,12 @@ $(document).ready(function () {
         answerID = answerID + 1;
     });
 
-
+//deleting answer box
     $(".answers-panel").on("click", "a.trash", function (event) {
         event.preventDefault();
         $(this).parents(".answer").remove();
     });
+*/
 
 });
 

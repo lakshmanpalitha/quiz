@@ -67,7 +67,8 @@ $db = Db::instance();
 
                                     <td>
                                         <div class="pull-right action-buttons">
-                                            <a href="add_question.php?edit_q=<?php echo $row->q_id; ?>"><svg class="glyph stroked pencil"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#stroked-pencil"></use></svg></a>
+                                            <a href="add_question.php?edit_q=<?php echo $row->q_id; ?>"><svg class="glyph stroked pencil"><use xlink:href="#stroked-pencil"></use></svg></a>
+                                            <a href="add_answer.php?add_a=<?php echo $row->q_id; ?>"><svg class="glyph stroked paperclip"><use xlink:href="#stroked-paperclip"/></svg></a>
                                         </div>
                                     </td>
                                 </tr>
