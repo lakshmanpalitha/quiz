@@ -13,6 +13,10 @@
 
         <li class=""><a href="manage_question.php"><svg class="glyph stroked clipboard with paper"><use xlink:href="#stroked-clipboard-with-paper"/></svg>Manage Quections</a></li>
 
+        <li class=""><a href="add_quiz.php"><svg class="glyph stroked clipboard with paper"><use xlink:href="#stroked-two-messages"/></svg>Manage Quiz</a></li>
+
+        <li class=""><a href="manage_answer.php"><svg class="glyph stroked clipboard with paper"><use xlink:href="#stroked-clipboard-with-paper"/></svg>Manage Answers</a></li>
+
 
 
         <li><a href="widgets.html"><svg class="glyph stroked calendar"><use xlink:href="#stroked-calendar"></use></svg> Widgets</a></li>

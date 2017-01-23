@@ -1,3 +1,7 @@
+
+
+
+
 $(document).ready(function () {
     var answerID = 1;
 
@@ -11,13 +15,18 @@ $(document).ready(function () {
             'insertdatetime media table contextmenu paste code',
             'image'
         ],
-        toolbar: 'undo redo | insert | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
+        toolbar: 'undo redo | insert | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | code',
 
         image_title: true,
         automatic_uploads: true,
         // URL of our upload handler (for more details check: https://www.tinymce.com/docs/configure/file-image-upload/#images_upload_url)
         images_upload_url: 'postAcceptor.php',
         file_picker_types: 'image',
+        //relative_urls : true,
+       //document_base_url : "http://localhost/quiz/manager/",
+        relative_urls : false,
+        remove_script_host : false,
+        convert_urls : true,
         file_picker_callback: function (cb, value, meta) {
             var input = document.createElement('input');
             input.setAttribute('type', 'file');
@@ -36,6 +45,19 @@ $(document).ready(function () {
             input.click();
         }
     });
+
+    $('.delete-btn').click(function(event){
+        var confirmMsg = confirm("Are you sure ?? Do you want to Delete This ??");
+        if (confirmMsg == true) {
+            return true;
+        } else {
+            event.preventDefault();
+        }
+    })
+
+
+    $('[data-toggle="tooltip"]').tooltip();
+
 /*
 //adding new answer box
     $(".add-answer").click(function () {
@@ -60,6 +82,8 @@ $(document).ready(function () {
     });
 */
 
+
+//dome redy close
 });
 
 

@@ -1,0 +1,7 @@
+.answers-block .answer span{
+    display: inline-block;
+}
+.answers-block .answer span:first-child{
+    margin-right: 5px;
+    padding-top: 5px;
+}

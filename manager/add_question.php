@@ -29,7 +29,12 @@ if (isset($_POST['add-question-btn'])) {
 
         if($db_add)
         {
-            $msg = 'Question Added';
+            //Select recently added Question to provide Add Answer link in Success message.
+            $recent_question = mysql_query('SELECT q_id FROM questions ORDER BY q_id DESC LIMIT 0, 1');
+            $questionRow=mysql_fetch_array($recent_question);
+            var_dump($questionRow[0]);
+
+            $msg = 'Question Added successfully ';
         }
         else
         {
@@ -42,18 +47,16 @@ if (isset($_POST['add-question-btn'])) {
 
 if(isset($q_id))
 {
+
 //update table
     if (isset($_POST['edit-question-btn'])) {
         $qName = $_POST['question'];
         $qDetails = htmlentities($_POST["question-details"]);
         $category = $_POST["category"];
 
-
         if(!empty($qName) && !empty($category)){
-
             $update_q = 'UPDATE questions SET `category_id` = '.$category.',  `question` = "'.$qName.'", `q_details` = "'.$qDetails.'" WHERE q_id = '.$q_id.'';
             $db_update = mysql_query($update_q);
-            var_dump($db_update);
             if($db_update)
             {
                 $msg = 'Record updated successfully';
@@ -107,7 +110,14 @@ if(isset($q_id))
 		<div class="row">
 			<div class="col-lg-12">
 				<div class="panel panel-default">
-					<div class="panel-heading">Question</div>
+					<div class="panel-heading">
+                        Question
+                        <a class="btn btn-primary btn-sm" href="manage_question.php" role="button"><svg class="glyph stroked tag"><use xlink:href="#stroked-tag"/></svg> Manage Question</a></div>
+                    <?php
+                    if(isset($questionRow)){?>
+                    <a class="btn btn-primary btn-sm" data-toggle="tooltip" data-placement="left" title="Add Answers" href="add_answer.php?add_a=<?php echo $questionRow[0]; ?>"><svg class="glyph stroked paperclip"><use xlink:href="#stroked-paperclip"/></svg>Add Answer</a>
+                    <?php } ?>
+                </div>
 					<div class="panel-body">
 						<div class="col-md-8">
                             <?php include "includes/messages.php"; ?>

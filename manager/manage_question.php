@@ -18,6 +18,23 @@ require 'includes/db.config.php';
 $db = Db::instance();
 
 
+$delete_q = $_GET['delete_question'];
+
+//Delete Quiz
+if(isset($delete_q))
+{
+    $delete_question = 'DELETE FROM questions WHERE q_id = '.$delete_q.'';
+    $db_delete = mysql_query($delete_question);
+    if($db_delete)
+    {
+        $msg = 'Question Delete successfully';
+    }
+    else
+    {
+        $error = 'There was a error please try again';
+    }
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -43,9 +60,12 @@ $db = Db::instance();
 				
 		
 		<div class="row">
+            <?php include "includes/messages.php"; ?>
             <div class="col-md-12">
                 <div class="panel panel-default category-list">
-                    <div class="panel-heading">Category List.</div>
+                    <div class="panel-heading">
+                        Questions List.
+                        <a class="btn btn-primary btn-sm" href="add_question.php" role="button"><svg class="glyph stroked plus sign"><use xlink:href="#stroked-plus-sign"/></svg> Add New Question</a></div>
                     <div class="panel-body">
                         <table data-toggle="table">
                             <thead>
@@ -67,8 +87,21 @@ $db = Db::instance();
 
                                     <td>
                                         <div class="pull-right action-buttons">
-                                            <a href="add_question.php?edit_q=<?php echo $row->q_id; ?>"><svg class="glyph stroked pencil"><use xlink:href="#stroked-pencil"></use></svg></a>
-                                            <a href="add_answer.php?add_a=<?php echo $row->q_id; ?>"><svg class="glyph stroked paperclip"><use xlink:href="#stroked-paperclip"/></svg></a>
+                                            <a data-toggle="tooltip" data-placement="left" title="Edit Question" href="add_question.php?edit_q=<?php echo $row->q_id; ?>"><svg class="glyph stroked pencil"><use xlink:href="#stroked-pencil"></use></svg></a>
+                                            <?php
+                                            $answers_select = mysql_query('SELECT * FROM answers WHERE q_id = '.$row->q_id.'');
+                                            $answers_result = mysql_num_rows($answers_select);
+                                            if($answers_result > 0){
+                                            ?>
+                                            <a data-toggle="tooltip" data-placement="left" title="Edit Answers" href="add_answer.php?edit_a=<?php echo $row->q_id; ?>"><svg class="glyph stroked pen tip"><use xlink:href="#stroked-pen-tip"/></svg></a>
+                                            <?php
+                                            }else{
+                                            ?>
+                                                <a data-toggle="tooltip" data-placement="left" title="Add Answers" href="add_answer.php?add_a=<?php echo $row->q_id; ?>"><svg class="glyph stroked paperclip"><use xlink:href="#stroked-paperclip"/></svg></a>
+                                            <?php
+                                            }
+                                            ?>
+                                            <a data-toggle="tooltip" data-placement="left" class="delete-btn" title="Delete Question" href="manage_question.php?delete_question=<?php echo $row->q_id; ?>"><svg class="glyph stroked trash"><use xlink:href="#stroked-trash"/></svg></a>
                                         </div>
                                     </td>
                                 </tr>

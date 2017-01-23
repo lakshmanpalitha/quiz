@@ -878,9 +878,10 @@ h1.page-header {
 	stroke-width: 4px;
 }
 
-.alert .glyph, .panel-heading .glyph {
-	width: 26px;
-	height: 26px;
+.alert .glyph, .panel-heading .glyph,
+.btn-primary.btn-sm .glyph{
+	width: 17px;
+	height: 17px;
 	margin: 0 10px 0 0;
 	stroke-width: 2px;
 }
