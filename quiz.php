@@ -13,9 +13,15 @@ $question_list = explode(",", $challenge_row[3]);
 
 
 //session work
-$_SESSION["next_question"] = 1;
-$currant_question = $_SESSION["next_question"] - 1;
+if(!empty($_SESSION["next_question"])){
+    $_SESSION["next_question"] = $_SESSION["next_question"] + 1;
+    $currant_question = $_SESSION["next_question"] - 1;
 
+    $_SESSION["next_question"] = 1;
+    $currant_question = $_SESSION["next_question"] - 1;
+}
+
+var_dump($_SESSION["next_question"]);
 
 //Select Currant question
 $select_question =mysql_query('SELECT * FROM questions where q_id = '.$question_list[$currant_question].'');
@@ -68,7 +74,7 @@ var_dump($question_list);
         <!-- Projects Row -->
         <div class="row col-md-12">
             <div class="left-col col-md-8">
-
+<form method="post" action="quiz.php">
                 <div class="col-md-6 portfolio-item">
                     <h3>
                         <?php echo $challenge_row[1]; ?>
@@ -94,10 +100,11 @@ var_dump($question_list);
                         <?php } ?>
                     </div>
                     <div class="button-group">
-                        <a id="btn_next" class="btn btn-next" href="quiz.php?challenge=<?php echo base64_encode("$challenge_row[0]"); ?>" role="button">
-                            Next > </a>
+                        <button type="submit" id="btn_next" class="btn btn-next" href="quiz.php?challenge=<?php echo base64_encode("$challenge_row[0]"); ?>" role="button">
+                            Next > </button>
                     </div>
                 </div>
+</form>
             </div>
             <div class="right-col col-md-4">
                 <?php include "includes/side_bar.php"; ?>
@@ -119,14 +126,13 @@ var_dump($question_list);
     $(document).ready(function () {
 
         $('#btn_next').click(function(e) {
-            e.preventDefault();
-            var quiz_id = '<?php echo $_GET['challenge']; ?>',
-                question_id = '<?php echo $question_list[$currant_question]; ?>',
-                //question_number = '<?php echo $question_list[$currant_question]; ?>',
-                answer ='',
-                time = $('#time-counter').val();
+            //var quiz_id = '<?php //echo $_GET['challenge']; ?>',
+                //question_id = '<?php //echo $question_list[$currant_question]; ?>',
+                //question_number = '<?php //echo $question_list[$currant_question]; ?>',
+                //answer ='',
+                //time = $('#time-counter').val();
 
-            console.log(question_id);
+            //console.log(question_id);
 
 //            $.ajax({
 //                url: "demo_test.txt",
