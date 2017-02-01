@@ -13,23 +13,29 @@ $question_list = explode(",", $challenge_row[3]);
 
 
 //session work
-if(!empty($_SESSION["next_question"])){
-    $_SESSION["next_question"] = $_SESSION["next_question"] + 1;
-    $currant_question = $_SESSION["next_question"] - 1;
-
-    $_SESSION["next_question"] = 1;
-    $currant_question = $_SESSION["next_question"] - 1;
+//$current_question = 1;
+if(empty($_SESSION["current_question"])){
+    $current_question = $_SESSION["current_question"] = 1;
+}else{
+    $current_question = $_SESSION["current_question"];
 }
 
-var_dump($_SESSION["next_question"]);
+if (isset($_POST['next_question_btn'])) {
+    $_SESSION["current_question"] = $_SESSION["current_question"] + 1;
+    $current_question = $_SESSION["current_question"];
+}
+
+
+var_dump($current_question);
+
 
 //Select Currant question
-$select_question =mysql_query('SELECT * FROM questions where q_id = '.$question_list[$currant_question].'');
+$select_question =mysql_query('SELECT * FROM questions where q_id = '.$question_list[$current_question].'');
 $question_row = mysql_fetch_array($select_question);
 
 
 //answers for current question
-$select_answer =mysql_query('SELECT * FROM answers where q_id = '.$question_list[$currant_question].'');
+$select_answer =mysql_query('SELECT * FROM answers where q_id = '.$question_list[$current_question].'');
 $answer_row = mysql_fetch_array($select_answer);
 
 
@@ -74,7 +80,7 @@ var_dump($question_list);
         <!-- Projects Row -->
         <div class="row col-md-12">
             <div class="left-col col-md-8">
-<form method="post" action="quiz.php">
+<form method="post" action="quiz.php?challenge=<?php echo base64_encode($challenge_id); ?>">
                 <div class="col-md-6 portfolio-item">
                     <h3>
                         <?php echo $challenge_row[1]; ?>
@@ -100,7 +106,7 @@ var_dump($question_list);
                         <?php } ?>
                     </div>
                     <div class="button-group">
-                        <button type="submit" id="btn_next" class="btn btn-next" href="quiz.php?challenge=<?php echo base64_encode("$challenge_row[0]"); ?>" role="button">
+                        <button type="submit" name="next_question_btn" id="btn_next" class="btn btn-next" href="quiz.php?challenge=<?php echo base64_encode("$challenge_row[0]"); ?>" role="button">
                             Next > </button>
                     </div>
                 </div>
